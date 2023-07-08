@@ -1,0 +1,7 @@
+#!/bin/zsh
+
+
+while true; do
+    go vet
+    sleep 5
+done
