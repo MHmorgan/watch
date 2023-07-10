@@ -111,7 +111,7 @@ func main() {
 		} else if errors.Is(cmd.err, context.DeadlineExceeded) {
 			bail("timeout after %v", cmd.timeout)
 		} else if cmd.err != nil {
-			panic(cmd.err)
+			bail("executing %q with args %q: %v", cmd.name, cmd.args, cmd.err)
 		} else if cmd.output() == "" {
 			screen.Status("no output")
 		} else {
@@ -156,7 +156,6 @@ func (c *WatchCommand) run() {
 		c.err = ctx.Err()
 	}
 	cancel() // avoid leaking context
-
 }
 
 func (c *WatchCommand) output() string {
