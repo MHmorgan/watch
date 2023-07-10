@@ -81,6 +81,7 @@ func main() {
 	}
 	screen.Name(cmd.name)
 	screen.Setup()
+	defer screen.Teardown()
 
 	stop := make(chan os.Signal, 1)
 	signal.Notify(stop, os.Interrupt, os.Kill)
